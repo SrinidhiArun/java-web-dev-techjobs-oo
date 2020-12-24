@@ -52,34 +52,24 @@ public class Job {
                 job.append(name);
             }
             job.append("\n"+"Employer: ");
-            if(employer.getValue().isBlank()){
-                job.append("Data not available");
-            }else{
-                job.append(employer.toString());
-            }
+            job.append(checkIfEmpty(employer));
             job.append("\n"+"Location: ");
-            if(location.getValue().isEmpty()){
-                job.append("Data not available");
-            }else{
-                job.append(location.toString());
-            }
+            job.append(checkIfEmpty(location));
             job.append("\n"+"Position Type: ");
-            if(positionType.getValue().isEmpty()){
-                job.append("Data not available");
-            }else{
-                job.append(positionType.toString());
-            }
+            job.append(checkIfEmpty(positionType));
             job.append("\n"+"Core Competency: ");
-            if(coreCompetency.getValue().isEmpty()){
-                job.append("Data not available");
-            }else{
-                job.append(coreCompetency.toString());
-            }
+            job.append(checkIfEmpty(coreCompetency));
             job.append("\n");
             return job.toString();
         }
     }
 
+    public String checkIfEmpty(JobField jobField){
+        if(jobField.getValue().isBlank()){
+            return "Data not available";
+        }
+        return jobField.toString();
+    }
     public String getName() {
         return name;
     }
