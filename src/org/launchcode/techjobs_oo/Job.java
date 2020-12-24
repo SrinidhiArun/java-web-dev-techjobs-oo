@@ -13,9 +13,6 @@ public class Job {
     private PositionType positionType;
     private CoreCompetency coreCompetency;
 
-    // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
-    //  other five fields. The second constructor should also call the first in order to initialize
-    //  the 'id' field.
     public Job(){
         id = nextId;
         nextId++;
@@ -28,9 +25,6 @@ public class Job {
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
     }
-    // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
-    //  match.
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -44,8 +38,47 @@ public class Job {
         return Objects.hash(id);
     }
 
-    // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
-    //  and id.
+    @Override
+    public String toString() {
+        if(name == null && employer == null && location == null && positionType == null && coreCompetency == null){
+           return "OOPS! This job does not seem to exist.";
+        }else{
+            StringBuilder job = new StringBuilder();
+            job.append("\n"+"ID: " + id + "\n");
+            job.append("Name: ");
+            if(name.isEmpty()){
+                job.append("Data not available");
+            }else{
+                job.append(name);
+            }
+            job.append("\n"+"Employer: ");
+            if(employer.getValue().isBlank()){
+                job.append("Data not available");
+            }else{
+                job.append(employer.toString());
+            }
+            job.append("\n"+"Location: ");
+            if(location.getValue().isEmpty()){
+                job.append("Data not available");
+            }else{
+                job.append(location.toString());
+            }
+            job.append("\n"+"Position Type: ");
+            if(positionType.getValue().isEmpty()){
+                job.append("Data not available");
+            }else{
+                job.append(positionType.toString());
+            }
+            job.append("\n"+"Core Competency: ");
+            if(coreCompetency.getValue().isEmpty()){
+                job.append("Data not available");
+            }else{
+                job.append(coreCompetency.toString());
+            }
+            job.append("\n");
+            return job.toString();
+        }
+    }
 
     public String getName() {
         return name;
